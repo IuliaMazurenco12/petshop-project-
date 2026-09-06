@@ -1,21 +1,23 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import axios from 'axios';
 import styles from './CategoryPage.module.css';
 
 const API_BASE_URL = 'http://localhost:3333';
 
 function CategoryPage() {
-  const { id } = useParams();
+  const { id } = useParams(); // Получаем ID категории из параметров маршрута
   const [category, setCategory] = useState(null);
   const [products, setProducts] = useState([]);
   const [status, setStatus] = useState('loading'); // 'loading' | 'succeeded' | 'failed' | 'empty'
 
+  // useEffect для загрузки данных категории и продуктов при изменении ID категории
   useEffect(() => {
     async function loadCategory() {
       setStatus('loading');
       try {
-        const response = await fetch(`${API_BASE_URL}/categories/${id}`);
-        const result = await response.json();
+        const response = await axios.get(`${API_BASE_URL}/categories/${id}`);
+        const result = response.data;
 
         if (result.status === 'ERR') {
           setStatus('empty');
