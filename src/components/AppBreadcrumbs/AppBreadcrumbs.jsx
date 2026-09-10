@@ -1,10 +1,9 @@
 import { Link as RouterLink } from 'react-router-dom';
-import Breadcrumbs from '@mui/material/Breadcrumbs'; // MUI
-import Link from '@mui/material/Link'; // MUI
-import Typography from '@mui/material/Typography'; // MUI
-import Box from '@mui/material/Box'; // MUI
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Link from '@mui/material/Link';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
-// стили обычной ("непройденной") крошки — таблетка со светло-серой рамкой
 const crumbSx = {
   display: 'inline-flex',
   alignItems: 'center',
@@ -21,7 +20,6 @@ const crumbSx = {
   },
 };
 
-// стили текущей страницы — та же таблетка, но с тёмной рамкой и жирным текстом
 const currentCrumbSx = {
   ...crumbSx,
   borderColor: '#1a1a1a',
@@ -29,7 +27,6 @@ const currentCrumbSx = {
   fontWeight: 600,
 };
 
-// короткая горизонтальная линия-разделитель между таблетками
 const connectorSx = {
   display: 'inline-block',
   width: '12px',
@@ -37,20 +34,18 @@ const connectorSx = {
   backgroundColor: '#e0e0e0',
 };
 
-// items — массив объектов вида { label: 'Текст', to: '/путь' }
-// если у элемента нет "to" — значит это текущая страница, показываем просто текст
 function AppBreadcrumbs({ items }) {
   return (
     <Breadcrumbs
-      separator={<Box sx={connectorSx} />} // MUI
-      sx={{ marginBottom: '32px', fontSize: '14px' }} // MUI
+      separator={<Box sx={connectorSx} />}
+      sx={{ marginBottom: '32px', fontSize: '14px' }}
     >
       {items.map((item) => {
         const isCurrentPage = !item.to;
 
         if (isCurrentPage) {
           return (
-            <Typography key={item.label} sx={currentCrumbSx}> {/* MUI */}
+            <Typography key={item.label} sx={currentCrumbSx}>
               {item.label}
             </Typography>
           );
@@ -62,7 +57,7 @@ function AppBreadcrumbs({ items }) {
             component={RouterLink}
             to={item.to}
             underline="none"
-            sx={crumbSx} // MUI
+            sx={crumbSx}
           >
             {item.label}
           </Link>

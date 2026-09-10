@@ -11,7 +11,7 @@ function ProductPage() {
 
   const [product, setProduct] = useState(null);
   const [category, setCategory] = useState(null);
-  const [status, setStatus] = useState('loading'); // 'loading' | 'succeeded' | 'failed' | 'empty'
+  const [status, setStatus] = useState('loading');
 
   const [quantity, setQuantity] = useState(1);
   const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
@@ -35,7 +35,6 @@ function ProductPage() {
         setProduct(foundProduct);
         setStatus('succeeded');
 
-        // подтягиваем категорию отдельно, чтобы построить хлебные крошки
         const categoryResponse = await axios.get(`${API_BASE_URL}/categories/${foundProduct.categoryId}`);
         if (categoryResponse.data.status !== 'ERR') {
           setCategory(categoryResponse.data.category);

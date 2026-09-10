@@ -15,7 +15,7 @@ const categoriesSlice = createSlice({
   name: 'categories',
   initialState: {
     items: [],
-    status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
+    status: 'idle',
     error: null,
   },
   reducers: {},
