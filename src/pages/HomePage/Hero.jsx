@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import mainPagePic from '../../assets/images/main-page-pic.svg';
+import mainPagePic from '../../assets/images/pets-header2.png';
 import styles from './Hero.module.css';
 
 function Hero() {

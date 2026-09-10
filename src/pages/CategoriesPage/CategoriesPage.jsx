@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchCategories } from '../../store/categoriesSlice.js';
+import AppBreadcrumbs from '../../components/AppBreadcrumbs/AppBreadcrumbs.jsx';
 import styles from './CategoriesPage.module.css';
 
 const API_BASE_URL = 'http://localhost:3333';
@@ -30,6 +31,12 @@ function CategoriesPage() {
 
   return (
     <section className={styles.page}>
+      <AppBreadcrumbs
+        items={[
+          { label: 'Main page', to: '/' },
+          { label: 'Categories' },
+        ]}
+      />
       <h1 className={styles.title}>Categories</h1>
       <div className={styles.grid}>
         {items.map((category) => (

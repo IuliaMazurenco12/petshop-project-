@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
+import AppBreadcrumbs from '../../components/AppBreadcrumbs/AppBreadcrumbs.jsx';
 import styles from './CategoryPage.module.css';
 
 const API_BASE_URL = 'http://localhost:3333';
 
 function CategoryPage() {
-  const { id } = useParams(); // Получаем ID категории из параметров маршрута
+  const { id } = useParams();
   const [category, setCategory] = useState(null);
   const [products, setProducts] = useState([]);
-  const [status, setStatus] = useState('loading'); // 'loading' | 'succeeded' | 'failed' | 'empty'
+  const [status, setStatus] = useState('loading');
 
-  // useEffect для загрузки данных категории и продуктов при изменении ID категории
   useEffect(() => {
     async function loadCategory() {
       setStatus('loading');
@@ -41,6 +41,13 @@ function CategoryPage() {
 
   return (
     <section className={styles.page}>
+      <AppBreadcrumbs
+        items={[
+          { label: 'Main page', to: '/' },
+          { label: 'Categories', to: '/categories' },
+          { label: category.title },
+        ]}
+      />
       <h1 className={styles.title}>{category.title}</h1>
       <div className={styles.grid}>
         {products.map((product) => (
