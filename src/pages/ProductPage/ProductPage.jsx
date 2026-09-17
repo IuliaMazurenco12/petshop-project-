@@ -4,10 +4,14 @@ import axios from 'axios';
 import AppBreadcrumbs from '../../components/AppBreadcrumbs/AppBreadcrumbs.jsx';
 import styles from './ProductPage.module.css';
 
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../store/cartSlice';
+
 const API_BASE_URL = 'http://localhost:3333';
 
 function ProductPage() {
   const { id } = useParams();
+  const dispatch = useDispatch();
 
   const [product, setProduct] = useState(null);
   const [category, setCategory] = useState(null);
@@ -39,7 +43,7 @@ function ProductPage() {
         if (categoryResponse.data.status !== 'ERR') {
           setCategory(categoryResponse.data.category);
         }
-      } catch (error) {
+      } catch {
         setStatus('failed');
       }
     }
@@ -65,7 +69,15 @@ function ProductPage() {
   }
 
   function handleAddToCart() {
-    console.log('В корзину:', product.title, 'количество:', quantity);
+    for (let i = 0; i < quantity; i += 1) {
+      dispatch(addToCart({
+        id: product.id,
+        title: product.title,
+        image: product.image,
+        price: product.price,
+        discont_price: product.discont_price,
+      }));
+    }
   }
 
   return (
