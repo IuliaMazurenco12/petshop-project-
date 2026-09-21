@@ -7,7 +7,8 @@ import styles from './CategoryPage.module.css';
 const API_BASE_URL = 'http://localhost:3333';
 
 function CategoryPage() {
-  const { id } = useParams();
+  const { id } = useParams(); // Получаем параметр id из URL. это хук из react-router-dom, который читает адрес страницы в браузере и достаёт из него именованные части.
+  
   const [category, setCategory] = useState(null);
   const [products, setProducts] = useState([]);
   const [status, setStatus] = useState('loading');

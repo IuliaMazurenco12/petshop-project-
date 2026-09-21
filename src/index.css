@@ -16,6 +16,8 @@
   box-sizing: border-box;
 }
 
+
+/*Убираю стандартные отступы браузера у страницы*/
 html,
 body {
   margin: 0;

@@ -7,6 +7,9 @@ import SalesPage from './pages/SalesPage/SalesPage.jsx';
 import ProductPage from './pages/ProductPage/ProductPage.jsx';
 import CartPage from './pages/CartPage/CartPage.jsx';
 import CategoryPage from './pages/CategoryPage/CategoryPage.jsx';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage.jsx';
+
+
 
 function App() {
   return (
@@ -19,6 +22,7 @@ function App() {
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/categories/:id" element={<CategoryPage />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
   );
